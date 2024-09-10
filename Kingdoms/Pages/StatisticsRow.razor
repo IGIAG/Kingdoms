@@ -1,0 +1,53 @@
+﻿<div class="cell">
+	<span class="mb-1 mr-3">@ResourceName</span>
+</div>
+@if(Delta == 0)
+{
+	<div class="cell">
+		<span class="mb-1 mr-3" style="white-space: nowrap;">@Value @ResourceUnits</span>
+	</div>
+}
+else if(Delta > 0)
+{
+	<div class="cell">
+		<span class="mb-1 mr-3" style="white-space: nowrap;">@Value (<span class="has-text-primary">+@Delta</span>) @ResourceUnits</span>
+	</div>
+}
+else if (Delta < 0)
+{
+	<div class="cell">
+		<span class="mb-1 mr-3" style="white-space: nowrap;">@Value (<span class="has-text-danger">@Delta</span>) @ResourceUnits</span>
+	</div>
+}
+
+<div class="is-flex is-align-items-center cell">
+	<progress class="progress @ProgressBarClasses is-small" value="@Value" max="@Max">
+		@Value
+	</progress>
+</div>
+<div class="cell">
+	<p class="mb-1 ml-3">@Max @ResourceUnits</p>
+</div>
+
+@code {
+	[Parameter]
+	public string ResourceName { get; set; } = "Unnamed resource";
+
+	[Parameter]
+	public string ResourceUnits { get; set; } = "U";
+
+	[Parameter]
+	public int? Delta { get; set; } = 0;
+
+	[Parameter]
+	public int Value { get; set; } = 0;
+
+	[Parameter]
+	public int Min { get; set; } = 0;
+
+	[Parameter]
+	public int Max { get; set; } = 0;
+
+	[Parameter]
+	public string ProgressBarClasses { get; set; } = "";
+}

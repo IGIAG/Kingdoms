@@ -1,0 +1,55 @@
+﻿<div class="box" style="max-height: 90vh; overflow: scroll;">
+	<h1 class="title">Shop</h1>
+	@{
+		<div>
+			<ul>
+				@foreach (Kingdoms.Buildings.Building building in buildingsShop)
+				{
+					<div class="box">
+						<p class="title">@building.Name</p>
+						<p>@building.Description</p>
+						<p>Gold : @building.GoldCost</p>
+						<p>Mats : @building.MaterialsCost</p>
+						<button @onclick="() => OnClickBuy(building)" class="button is-info">
+							Buy
+						</button>
+					</div>
+				}
+
+			</ul>
+
+
+		</div>
+	}
+</div>
+
+
+
+
+@code {
+	[Parameter]
+	public Kingdom? KingdomParam { get; set; }
+
+	[Parameter]
+	public Index? Parent { get; set; }
+
+	public List<Kingdoms.Buildings.Building> buildingsShop { get; set; } = new();
+
+	protected override void OnInitialized()
+	{
+		IEnumerable<Type> PurchesableBuildings = BuildingShop.BuildingTypes;
+
+		foreach (Type type in PurchesableBuildings)
+		{
+			buildingsShop.Add((Kingdoms.Buildings.Building)Activator.CreateInstance(type)!);
+		}
+
+
+	}
+
+	void OnClickBuy(Kingdoms.Buildings.Building building)
+	{
+		KingdomParam!.BuyBuilding(building);
+		Parent!.UpdateState();
+	}
+}

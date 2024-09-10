@@ -1,0 +1,65 @@
+﻿@page "/"
+@using Buildings
+@using Buildings.Housing
+@using Buildings.Production
+@using System.Text.Json
+
+@if (!kingdom.Failed)
+{
+	<button @onclick=AdvanceAge class="button is-danger">Advance age</button>
+
+	
+	<div class="columns">
+		<div class="column">
+			<KingdomStatistics kingdom=kingdom></KingdomStatistics>
+		</div>
+		<div class="column">
+			<KingdomDisplay kingdom=kingdom></KingdomDisplay>
+		</div>
+		<div class="column is-one-fifth">
+			<PurchaseMenu KingdomParam=kingdom Parent=this></PurchaseMenu>
+		</div>
+	</div>
+	
+}
+else
+{
+	<h1>Kingdom failed!</h1>
+}
+
+
+
+@code {
+
+	protected override void OnInitialized()
+	{
+		//kingdomJson = System.Text.Json.JsonSerializer.Serialize(this.kingdom);
+		kingdom.Buildings.Add(new Farm());
+		kingdom.Buildings.Add(new WaterPump());
+	}
+
+	public Kingdom kingdom = new()
+	{
+		People = 10,
+		Gold = 100,
+		Materials = 100,
+		Water = 100,
+		Food = 100,
+		Happyness = 50
+	};
+
+	//public string kingdomJson = "Advance to show";
+
+
+
+	public void AdvanceAge()
+	{
+		this.kingdom.Logic();
+	}
+
+	public void UpdateState()
+	{
+		StateHasChanged();
+	}
+
+}

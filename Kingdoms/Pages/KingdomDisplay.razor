@@ -1,0 +1,18 @@
+﻿<div class="box">
+	<h1 class="title">Buildings</h1>
+	<div class="grid is-col-min-10">
+		@foreach (var building in kingdom!.Buildings)
+		{
+			<div class="cell box">
+				<h1 class="title">@building.Name</h1>
+				<p>@building.Description</p>
+			</div>
+		}
+	</div>
+</div>
+
+
+@code {
+	[Parameter]
+	public Kingdom? kingdom { get; set; }
+}

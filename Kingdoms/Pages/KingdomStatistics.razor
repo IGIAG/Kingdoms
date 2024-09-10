@@ -1,0 +1,31 @@
+﻿<div class="box">
+	<h1 class="title">Resources</h1>
+	<div class="fixed-grid has-4-cols">
+		<div class="grid">
+			<div class="cell has-text-weight-bold">
+				Resource
+			</div>
+			<div class="cell has-text-weight-bold">
+				Current
+			</div>
+			<div class="cell has-text-weight-bold">
+				
+			</div>
+			<div class="cell has-text-weight-bold">
+				
+			</div>
+			<StatisticsRow ResourceName="Population" ResourceUnits="" Value="kingdom!.People" Min="0" Max="kingdom!.GetCapacity()" ProgressBarClasses="is-info" Delta="kingdom!.People - kingdom.LastPeople"></StatisticsRow>
+			<StatisticsRow ResourceName="Happyness" ResourceUnits="%" Value="(int)kingdom!.Happyness" Min="0" Max="(int)Math.Max(kingdom!.Happyness,100)" ProgressBarClasses="is-warning" Delta="(int)(kingdom!.Happyness - kingdom.LastHappyness)"></StatisticsRow>
+			<StatisticsRow ResourceName="Water" ResourceUnits="L" Value="kingdom!.Water" Min="0" Max="Math.Max(kingdom!.Water,100)" ProgressBarClasses="is-link" Delta="kingdom!.Water - kingdom.LastWater"></StatisticsRow>
+			<StatisticsRow ResourceName="Food" ResourceUnits="Kg" Value="kingdom!.Food" Min="0" Max="Math.Max(kingdom!.Food,100)" ProgressBarClasses="is-primary" Delta="kingdom!.Food - kingdom.LastFood"></StatisticsRow>
+			<StatisticsRow ResourceName="Materials" ResourceUnits="U" Value="kingdom!.Materials" Min="0" Max="Math.Max(kingdom!.Materials,100)" ProgressBarClasses="is-text" Delta="kingdom!.Materials - kingdom.LastMaterials"></StatisticsRow>
+			<StatisticsRow ResourceName="Gold" ResourceUnits="U" Value="kingdom!.Gold" Min="0" Max="Math.Max(kingdom!.Gold,100)" ProgressBarClasses="is-warning" Delta="kingdom!.Gold - kingdom.LastGold"></StatisticsRow>
+
+		</div>
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public Kingdom? kingdom { get; set; }
+}
