@@ -5,7 +5,7 @@
 			<ul>
 				@foreach (Kingdoms.Buildings.Building building in buildingsShop)
 				{
-					<div class="box">
+					<li class="box">
 						<p class="title">@building.Name</p>
 						<p>@building.Description</p>
 						<p>Gold : @building.GoldCost</p>
@@ -13,7 +13,7 @@
 						<button @onclick="() => OnClickBuy(building)" class="button is-info">
 							Buy
 						</button>
-					</div>
+					</li>
 				}
 
 			</ul>
@@ -47,9 +47,9 @@
 
 	}
 
-	void OnClickBuy(Kingdoms.Buildings.Building building)
+	async Task OnClickBuy(Kingdoms.Buildings.Building building)
 	{
 		KingdomParam!.BuyBuilding(building);
-		Parent!.UpdateState();
+		await Parent!.UpdateState();
 	}
 }

@@ -1,11 +1,11 @@
 ﻿namespace Kingdoms.Buildings.Production
 {
 	[Purchasable]
-	public class WaterPump : Building
+	public class Farm : Building
 	{
-		public override string Name => "Water pump";
+		public override string Name => "Farm";
 
-		public override string Description => "Pumps 1L of water";
+		public override string Description => "Makes 10 food for 1 water";
 
 		public override int GoldCost => 10;
 
@@ -13,9 +13,15 @@
 
 		public override bool Invincable => false;
 
+		public override string RenderString => "🌽";
+
 		public override void Policy(Kingdom kingdom)
 		{
-			kingdom.Water++;
+			if(kingdom.Water > 0)
+			{
+				kingdom.Water--;
+				kingdom.Food += 10;
+			}
 		}
 	}
 }

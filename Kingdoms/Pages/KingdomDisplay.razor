@@ -1,15 +1,32 @@
 ﻿<div class="box">
 	<h1 class="title">Buildings</h1>
-	<div class="grid is-col-min-10">
+	<div class="grid ">
 		@foreach (var building in kingdom!.Buildings)
 		{
-			<div class="cell box">
-				<h1 class="title">@building.Name</h1>
-				<p>@building.Description</p>
+			<div class="cell my-building is-flex is-align-items-center is-justify-content-center">
+				@building.RenderString
+				<div class="my-tooltip">
+					<div class="box content">
+						<h3>@building.Name</h3>
+						<p>@building.Description</p>
+					</div>
+				</div>
 			</div>
+
 		}
 	</div>
 </div>
+<style>
+	.my-building:hover .my-tooltip {
+		display: block;
+		position : fixed;
+	}
+
+	.my-building .my-tooltip {
+		display: none;
+	}
+
+</style>
 
 
 @code {

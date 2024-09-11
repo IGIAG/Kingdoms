@@ -2,6 +2,7 @@
 {
 	public abstract class Building
 	{
+		public abstract string RenderString { get; }
 		public abstract string Name { get; }
 
 		public abstract string Description { get; }

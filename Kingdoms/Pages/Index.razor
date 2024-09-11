@@ -6,9 +6,6 @@
 
 @if (!kingdom.Failed)
 {
-	<button @onclick=AdvanceAge class="button is-danger">Advance age</button>
-
-	
 	<div class="columns">
 		<div class="column">
 			<KingdomStatistics kingdom=kingdom></KingdomStatistics>
@@ -34,8 +31,10 @@ else
 	protected override void OnInitialized()
 	{
 		//kingdomJson = System.Text.Json.JsonSerializer.Serialize(this.kingdom);
+		kingdom.View = this;
 		kingdom.Buildings.Add(new Farm());
 		kingdom.Buildings.Add(new WaterPump());
+		World.SpawnKingdom(kingdom);
 	}
 
 	public Kingdom kingdom = new()
@@ -57,9 +56,13 @@ else
 		this.kingdom.Logic();
 	}
 
-	public void UpdateState()
+	public async Task UpdateState()
 	{
-		StateHasChanged();
+		await InvokeAsync(() =>
+		{
+			StateHasChanged();
+		});
+
 	}
 
 }

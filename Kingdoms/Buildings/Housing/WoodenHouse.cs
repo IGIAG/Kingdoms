@@ -14,5 +14,7 @@
 		public override int MaterialsCost => 40;
 
 		public override bool Invincable => false;
+
+		public override string RenderString => "🏚️";
 	}
 }

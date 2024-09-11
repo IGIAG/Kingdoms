@@ -5,6 +5,7 @@ namespace Kingdoms
 {
     public class Kingdom
     {
+        public Pages.Index? View { get; set; }
 		public int Age { get; set; } = 0;
 		public int People { get; set; }
 		public int Gold { get; set; }
@@ -25,7 +26,7 @@ namespace Kingdoms
 
         public List<Building> Buildings { get; set; } = new List<Building>() { new Castle() };
 
-		public void Logic()
+		public async Task Logic()
         {
             LastAge = Age;
             LastPeople = People;
@@ -49,6 +50,9 @@ namespace Kingdoms
             {
                 Failed = true;
             }
+            if(View != null){
+                await View!.UpdateState();
+			};
         }
 
         private void BaseBehaviour()

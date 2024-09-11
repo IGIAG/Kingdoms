@@ -2,6 +2,7 @@
 {
 	public class Castle : House
 	{
+
 		public override int Capacity => 10;
 
 		public override string Name => "Castle";
@@ -13,5 +14,7 @@
 		public override int MaterialsCost => 0;
 
 		public override bool Invincable => true;
+
+		public override string RenderString => "🏰";
 	}
 }

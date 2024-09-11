@@ -1,3 +1,4 @@
+using Kingdoms;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -21,5 +22,7 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
+_ = World.RunWorld();
 
 app.Run();

@@ -13,6 +13,8 @@
 
 		public override bool Invincable => false;
 
+		public override string RenderString => "🏛️";
+
 		public override void Policy(Kingdom kingdom)
         {
             double YieldPerPerson = Config.TaxYieldPerPerson;
